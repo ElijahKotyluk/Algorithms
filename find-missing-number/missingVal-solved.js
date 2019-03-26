@@ -1,4 +1,4 @@
-// start at both ends, find hte smaller difference. save as pattern for sequence. find missing val
+// start at both ends, find the smaller difference. save as pattern for sequence. find missing val
 const array = [1, 3, 4];
 
 const findMissing = arr => {
