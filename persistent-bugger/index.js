@@ -3,17 +3,20 @@ function persistence(num) {
   // Count number of loops
   let count = 0
 
-  // first we get an array of digits
-  // while length of digits is greater than 1
+  // if length of num is great than one
   while (String(num).length > 1) {
     count++
 
+    // split number string
     strNumArr = String(num).split('')
+
+    //  reduce strNumArr and multiply each integer
     num = strNumArr.reduce((prev, curr, i, arr) => {
       return parseInt(prev) * parseInt(curr)
     })
   }
 
+  // return count total 
   return count
 }
 
