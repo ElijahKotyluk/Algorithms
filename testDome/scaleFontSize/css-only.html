@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Articles</title>
+</head>
+<body>
+  <div id = "textDiv">
+    <p style="font-size: 40px;">Apple</p>
+    <p style="font-size: 10px;">Pear</p>
+  </div>
+  <div id = "textDiv2">
+    <p style="font-size: 40px;">Apple</p>
+    <p style="font-size: 10px;">Pear</p>
+  </div>
+  <script>
+  function scaleFontSize(parent, scalingFactor) {
+
+    if(parent.length > 1) {
+
+      parent.forEach((el) => {
+        console.log('el', el)
+
+        let children = el.children
+        console.log('children:', children.length)
+
+        for(let i = 0; i < children.length; i++) {
+          console.log(children[i])
+
+          // child
+          const child = children[i]
+
+          // tag
+          const tag = child.style.fontSize
+          console.log('tag:', tag)
+
+          // scaled
+          const scaled = `${parseInt(tag, 10) * scalingFactor}px`
+          console.log('scaled', scaled)
+
+
+          // Set font-size to scaled font size
+          child.style.fontSize = scaled
+        }
+      })
+    } else {
+      var children = parent.children
+      console.log('children:', children)
+
+      for(i = 0; i < children.length; i++) {
+        console.log('childrens',children[i])
+
+        // child
+        const child = children[i]
+
+        // tag
+        const tag = child.style.fontSize
+        console.log('tag:', tag)
+
+        // scaled
+        const scaled = `${parseInt(tag, 10) * scalingFactor}px`
+        console.log('scaled', scaled)
+
+
+        // Set font-size to scaled font size
+        child.style.fontSize = scaled
+      }
+    }
+  }
+
+  scaleFontSize([document.getElementById("textDiv"), document.getElementById("textDiv2"), ], 0.5);
+  </script>
+</body>
+</html>
