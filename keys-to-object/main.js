@@ -10,6 +10,26 @@ const keys = [
 ];
 
 /**
+ * 
+ * @description Helper function that recursively combines two objects to prevent a collision that
+ *              would be caused by Object.assign(a, b) or spread operator merge { ...a, ...b }
+ * @param {object} a
+ * @param {object} b
+ * @returns {Object} a
+ */
+const combineObjects = (a, b) => {
+    for (prop in b) {
+        if (!a[prop]) a[prop] = b[prop];
+
+        if (typeof (b[prop] === 'object') || (typeof (a[prop]) !== 'object')) {
+            combineObjects(a[prop], b[prop]);
+        }
+    }
+
+    return a;
+}
+
+/**
  * @description Helper function to help determine whether or not a path chunk is a file or a directory
  * @param {string} pathChunk
  * @returns {boolean}
@@ -51,9 +71,9 @@ const keysToObjects = (input) => {
     let fileTree = {};
 
     for (let path = 0; path < input.length; path++) {
-        let fileTreeProp = pathToObject(input[path]);
+        let fileTreeProps = pathToObject(input[path]);
 
-        Object.assign(fileTree, fileTreeProp);
+        fileTree = combineObjects(fileTree, fileTreeProps);
     }
 
     return fileTree;
